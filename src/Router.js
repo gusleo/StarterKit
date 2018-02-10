@@ -1,9 +1,15 @@
 import React from "react";
 import { StackNavigator } from "react-navigation";
-import { Login } from "./screens/auth";
+import Authentication from "./screens/auth/router";
 
-const AppNavigator = StackNavigator({
-  Login: { screen: Login }
-});
+const AppNavigator = StackNavigator(
+  {
+    Authentication: { screen: Authentication }
+  },
+  {
+    initialRouteName: "Authentication",
+    headerMode: "none"
+  }
+);
 
 export default AppNavigator;

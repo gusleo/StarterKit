@@ -36,6 +36,9 @@
 <PROJECT_ROOT>/node_modules/xdl/.*
 <PROJECT_ROOT>/node_modules/reqwest/.*
 <PROJECT_ROOT>/node_modules/metro-bundler/.*
+<PROJECT_ROOT>/node_modules/metro/.*
+<PROJECT_ROOT>/node_modules/react-native-keybaord-aware-scroll-view/.*
+<PROJECT_ROOT>/node_modules/react-native-tab-view/.*
 
 [include]
 
