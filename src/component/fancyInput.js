@@ -1,5 +1,3 @@
-/* @flow */
-
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Item, Input, Icon } from "native-base";
@@ -46,7 +44,7 @@ const FancyIcon = ( {
 );
 
 FancyIcon.defaultProps = {
-   
+    password: false,
     placeholder: "",
     placeholderTextColor: "#CCC"
 };

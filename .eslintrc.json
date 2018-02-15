@@ -1,38 +1,35 @@
 {
-  "env": {
-    "node": true,
-    "browser": true,
-    "es6": true
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".android.js", ".ios.js"]
-      }
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".android.js", ".ios.js"]
+            }
+        }
+    },
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier", "prettier/flowtype", "prettier/react"],
+    "plugins": ["flowtype", "react", "prettier"],
+    "rules": {
+        "indent": [2, 4],
+        "space-in-parens": [2, "always"],
+        "template-curly-spacing": [2, "always"],
+        "array-bracket-spacing": [2, "always"],
+        "object-curly-spacing": [2, "always"],
+        "computed-property-spacing": [2, "always"],
+        "no-multiple-empty-lines": [2, { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
+        "linebreak-style": ["error", "windows"],
+        "quotes": [2, "double", "avoid-escape"],
+        "no-console": "off",
+        "prefer-const": 1,
+        "complexity": [1, 5],
+        "react/prefer-es6-class": 0,
+        "react/jsx-filename-extension": 0,
+        "react/jsx-curly-spacing": [2, "always"],
+        "react/jsx-indent": [2, 4]
     }
-  },
-  "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier", "prettier/flowtype", "prettier/react"],
-  "plugins": ["flowtype", "react", "prettier"],
-  "rules": {
-    "indent": [2, 4],
-
-    "space-in-parens": [2, "always"],
-    "template-curly-spacing": [2, "always"],
-    "array-bracket-spacing": [2, "always"],
-    "object-curly-spacing": [2, "always"],
-    "computed-property-spacing": [2, "always"],
-    "no-multiple-empty-lines": [2, { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
-
-    "quotes": [2, "double", "avoid-escape"],
-
-    "prefer-const": 1,
-
-    "complexity": [1, 5],
-
-    "react/prefer-es6-class": 0,
-    "react/jsx-filename-extension": 0,
-    "react/jsx-curly-spacing": [2, "always"],
-    "react/jsx-indent": [2, 4]
-  }
 }

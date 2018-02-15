@@ -3,7 +3,15 @@
 .*/*[.]android.js
 
 ; Ignore templates for 'react-native init'
+<PROJECT_ROOT>/node_modules/react-native/.*
 <PROJECT_ROOT>/node_modules/react-native/local-cli/templates/.*
+<PROJECT_ROOT>/node_modules/react-native/local-cli/bundle/.*
+<PROJECT_ROOT>/node_modules/react-native/local-cli/core/.*
+<PROJECT_ROOT>/node_modules/react-native/local-cli/server/.*
+<PROJECT_ROOT>/node_modules/react-native/local-cli/util/.*
+
+; Ignore RN StatusBar
+<PROJECT_ROOT>/node_modules/react-native/Libraries/.*
 
 ; Ignore RN jest
 <PROJECT_ROOT>/node_modules/react-native/jest/.*
@@ -37,8 +45,10 @@
 <PROJECT_ROOT>/node_modules/reqwest/.*
 <PROJECT_ROOT>/node_modules/metro-bundler/.*
 <PROJECT_ROOT>/node_modules/metro/.*
-<PROJECT_ROOT>/node_modules/react-native-keybaord-aware-scroll-view/.*
 <PROJECT_ROOT>/node_modules/react-native-tab-view/.*
+
+; Ignore native base
+.*/node_modules/react-native-keyboard-aware-scroll-view/.*
 
 [include]
 
