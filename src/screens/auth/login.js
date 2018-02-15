@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 import { Container, Button, Text, Spinner } from "native-base";
@@ -14,12 +15,8 @@ type State = {
     password: string
 };
 class Login extends Component<Props, State> {
-    state = {
-        username: "",
-        password: ""
-    };
-    loginhandler() {
-        console.log( this.state );
+    loginHandler() {
+        this.props.navigation.navigate( "Main" );
     }
     render() {
         const isLoading = false;
@@ -46,20 +43,6 @@ class Login extends Component<Props, State> {
                             onPress={ () => this.loginHandler() }
                         >
                             {button}
-                        </Button>
-                    </View>
-
-                    <View style={ { marginBottom: 80 } }>
-                        <Button
-                            style={ {
-                                backgroundColor: "#6FAF98",
-                                alignSelf: "center"
-                            } }
-                            onPress={ () =>
-                                this.props.navigation.navigate( "DrawerOpen" )
-                            }
-                        >
-                            <Text>Lets Go!!</Text>
                         </Button>
                     </View>
                 </Wallpaper>

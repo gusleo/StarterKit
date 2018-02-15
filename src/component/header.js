@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { Header, Button, Icon, Left, Body, Right, Title } from "native-base";
@@ -12,6 +13,11 @@ type Props = {
 type State = {};
 
 class HeaderCustom extends Component<Props, State> {
+    static defaultProps = {
+        useBackButton: false,
+        hasTabs: false
+    };
+
     backButtonPress = () => console.log( "back button press" );
 
     renderRightMenu = () => (
@@ -53,10 +59,5 @@ class HeaderCustom extends Component<Props, State> {
         );
     }
 }
-
-HeaderCustom.defaultProps = {
-    useBackButton: false,
-    hasTab: false
-};
 
 export default HeaderCustom;
