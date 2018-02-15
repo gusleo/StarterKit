@@ -59,7 +59,7 @@ class Login extends Component<Props, State> {
                                 this.props.navigation.navigate( "DrawerOpen" )
                             }
                         >
-                            <Text>Lets Go</Text>
+                            <Text>Lets Go!!</Text>
                         </Button>
                     </View>
                 </Wallpaper>
