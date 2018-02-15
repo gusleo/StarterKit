@@ -12,7 +12,12 @@ export default StackNavigator(
         initialRouteName: "Home",
         headerMode: "screen",
         navigationOptions: ( { navigation } ) => ( {
-            header: <Header navigation={ navigation } />
+            header: (
+                <Header
+                    useBackButton={ navigation.routes.length > 1 }
+                    navigation={ navigation }
+                />
+            )
         } ),
         contentOptions: {
             activeTintColor: "#e91e63"
