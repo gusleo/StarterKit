@@ -46,7 +46,7 @@ const FancyIcon = ( {
 );
 
 FancyIcon.defaultProps = {
-    password: false,
+   
     placeholder: "",
     placeholderTextColor: "#CCC"
 };
