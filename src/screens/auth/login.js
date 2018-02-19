@@ -6,15 +6,15 @@ import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { FancyIcon, Wallpaper } from "../../component";
 import styles from "./styles";
 
-type Props = {
+type PropsType = {
     navigation: NavigationScreenProp<NavigationState, *>
 };
 
-type State = {
+type StateType = {
     username: string,
     password: string
 };
-class Login extends Component<Props, State> {
+class Login extends Component<PropsType, StateType> {
     loginHandler() {
         this.props.navigation.navigate( "Main" );
     }

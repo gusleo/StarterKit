@@ -1,12 +1,27 @@
 // @flow
 
-import React from "react";
+import React, { Component } from "react";
 import { Content, Text } from "native-base";
+import { View } from "react-native";
+import { Slideshow } from "../../../component";
+import { SlideType } from "../../../component/type";
 
-const Home = () => (
-    <Content padder>
-        <Text>Your are in Home</Text>
-    </Content>
-);
+type StateType = {
+    slideShowData: Array<SlideType>
+};
 
-export default Home;
+export default class Home extends Component<*, StateType> {
+    static state = {
+        slideshowData: [ { title: "" } ]
+    };
+    render() {
+        return (
+            <View>
+                <Slideshow dataSource={ this.state.slideShowData } />
+                <Content>
+                    <Text>Your are in Home</Text>
+                </Content>
+            </View>
+        );
+    }
+}

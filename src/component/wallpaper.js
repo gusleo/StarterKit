@@ -35,12 +35,12 @@ const styles = StyleSheet.create( {
     }
 } );
 
-type Props = {
+type PropsType = {
     useDefaultLogo?: boolean,
     children?: React.Node
 };
 
-const Wallpaper = ( { useDefaultLogo, children }: Props ) => (
+const Wallpaper = ( { useDefaultLogo, children }: PropsType ) => (
     <ImageBackground source={ launchscreenBg } style={ styles.imageContainer }>
         {useDefaultLogo && (
             <View style={ styles.logoContainer }>

@@ -3,16 +3,16 @@ import React, { Component } from "react";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { Header, Button, Icon, Left, Body, Right, Title } from "native-base";
 
-type Props = {
+type PropsType = {
     useBackButton?: boolean,
     hasTabs?: boolean,
     title: string,
     navigation: NavigationScreenProp<NavigationState, *>
 };
 
-type State = {};
+type StateType = {};
 
-class HeaderCustom extends Component<Props, State> {
+class HeaderCustom extends Component<PropsType, StateType> {
     static defaultProps = {
         useBackButton: false,
         hasTabs: false
