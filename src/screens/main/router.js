@@ -6,16 +6,20 @@ import Home from "./home";
 
 export default StackNavigator(
     {
-        Home: { screen: Home }
+        Home: { name: "MyGome", screen: Home }
     },
     {
         initialRouteName: "Home",
         headerMode: "screen",
         navigationOptions: ( { navigation } ) => ( {
-            header: (
+            header: props => (
                 <Header
-                    useBackButton={ navigation.routes.length > 1 }
+                    useBackButton={
+                        navigation.routes != undefined &&
+                        navigation.routes.length > 1
+                    }
                     navigation={ navigation }
+                    { ...props }
                 />
             )
         } ),

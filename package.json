@@ -18,6 +18,7 @@
         "flow-typed": "^2.3.0",
         "jest-expo": "25.0.0",
         "prettier": "1.10.2",
+        "react-devtools": "^3.1.0",
         "react-native-scripts": "1.11.1",
         "react-test-renderer": "16.2.0"
     },
@@ -29,7 +30,8 @@
         "android": "react-native-scripts android",
         "ios": "react-native-scripts ios",
         "test": "node node_modules/jest/bin/jest.js",
-        "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
+        "eslint-check":
+            "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
     },
     "jest": {
         "preset": "jest-expo"

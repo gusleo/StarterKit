@@ -1,13 +1,23 @@
 // @flow
 import React, { Component } from "react";
-import { NavigationScreenProp, NavigationState } from "react-navigation";
+import {
+    NavigationScreenProp,
+    NavigationState,
+    NavigationScene,
+    NavigationScreenDetails,
+    NavigationStackScreenOptions
+} from "react-navigation";
 import { Header, Button, Icon, Left, Body, Right, Title } from "native-base";
 
 type PropsType = {
     useBackButton?: boolean,
     hasTabs?: boolean,
     title: string,
-    navigation: NavigationScreenProp<NavigationState, *>
+    navigation: NavigationScreenProp<NavigationState, *>,
+    getScreenDetails: (
+        scene: NavigationScene
+    ) => NavigationScreenDetails<NavigationStackScreenOptions>,
+    scene: NavigationScene
 };
 
 type StateType = {};
@@ -46,12 +56,16 @@ class HeaderCustom extends Component<PropsType, StateType> {
     }
 
     render() {
+        const { getScreenDetails, scene } = this.props;
+        const details = getScreenDetails( scene );
+        const { options } = details;
+
         return (
             <Header hasTabs={ this.props.hasTabs }>
                 <Left>{this.renderLeftMenu()}</Left>
 
                 <Body>
-                    <Title>{this.props.title}</Title>
+                    <Title>{options.title || ""}</Title>
                 </Body>
 
                 {this.renderRightMenu()}

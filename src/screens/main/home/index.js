@@ -6,13 +6,17 @@ import { View } from "react-native";
 import { Slideshow } from "../../../component";
 import type { SlideType } from "../../../component/type";
 
+type PropType = {};
 type StateType = {
     slideShowData: Array<SlideType>
 };
 
-export default class Home extends Component<*, StateType> {
-    static state = {
-        slideshowData: [ { title: "" } ]
+export default class Home extends Component<PropType, StateType> {
+    static navigationOptions = {
+        title: "Home"
+    };
+    state = {
+        slideShowData: [ { title: "", caption: "", url: "" } ]
     };
     render() {
         return (

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from "react";
-import SliderImage from "react-native-slideshow";
+import { View } from "react-native";
+import Slideshow from "react-native-slideshow";
 import type { SlideType } from "./type";
 
 type PropsType = {
@@ -12,24 +13,28 @@ type StateType = {
     position: number
 };
 
-export default class Slideshow extends Component<PropsType, StateType> {
+export default class ImageCarosel extends Component<PropsType, StateType> {
     static defaultProps = {
-        duration: 2000
+        duration: 2000,
+        dataSource: []
     };
     static state = {
-        posisition: 1
+        posisition: 1,
+        interval: 0
     };
-    componentWillMount() {
-        this.setState( {
-            interval: setInterval( () => {
-                this.setState( {
-                    position:
-                        this.state.position === this.props.dataSource.length
-                            ? 0
-                            : this.state.position + 1
-                } );
-            }, this.props.duration )
-        } );
+    componentDidMount() {
+        if ( this.props.dataSource ) {
+            this.setState( {
+                interval: setInterval( () => {
+                    this.setState( {
+                        position:
+                            this.state.position === this.props.dataSource.length
+                                ? 0
+                                : this.state.position + 1
+                    } );
+                }, this.props.duration )
+            } );
+        }
     }
 
     componentWillUnmount() {
@@ -37,12 +42,10 @@ export default class Slideshow extends Component<PropsType, StateType> {
     }
 
     render() {
-        return (
-            <SliderImage
-                dataSource={ this.props.dataSource }
-                position={ this.state.position }
-                onPositionChanged={ position => this.setState( { position } ) }
-            />
-        );
+        <Slideshow
+            dataSource={ this.props.dataSource }
+            position={ this.state.position }
+            onPositionChanged={ position => this.setState( { position } ) }
+        />;
     }
 }
