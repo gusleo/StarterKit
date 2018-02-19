@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import { View, StatusBar } from "react-native";
 import { Container, Button, Text, Spinner } from "native-base";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
-import { FancyIcon, Wallpaper } from "../../component";
+import { FancyIcon, Wallpaper } from "../../component/";
+
 import styles from "./styles";
 
 type PropsType = {

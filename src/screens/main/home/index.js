@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Content, Text } from "native-base";
 import { View } from "react-native";
 import { Slideshow } from "../../../component";
-import { SlideType } from "../../../component/type";
+import type { SlideType } from "../../../component/type";
 
 type StateType = {
     slideShowData: Array<SlideType>

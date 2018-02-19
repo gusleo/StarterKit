@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Item, Input, Icon } from "native-base";
@@ -19,7 +20,7 @@ const styles = StyleSheet.create( {
     }
 } );
 
-type Props = {
+type PropsType = {
     icon: string,
     password?: boolean,
     placeholderTextColor?: string,
@@ -31,7 +32,7 @@ const FancyIcon = ( {
     password,
     placeholder,
     placeholderTextColor
-}: Props ) => (
+}: PropsType ) => (
     <Item rounded style={ styles.fancyInput }>
         <Icon name={ icon } style={ styles.fancyIcon } />
         <Input

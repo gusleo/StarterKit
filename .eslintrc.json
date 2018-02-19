@@ -7,7 +7,8 @@
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".android.js", ".ios.js", ".js.flow"]
+                "extensions": [".js", ".android.js", ".ios.js", ".js.flow"],
+                "paths": ["src"]
             }
         },
         "flowtype": {
