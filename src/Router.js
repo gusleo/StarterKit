@@ -1,13 +1,14 @@
 import { StackNavigator } from "react-navigation";
-
-import Drawer from "./screens/main/drawer";
+import AuthenticationNavigator from "./screens/auth/router";
+import MainNavigation from "./screens/main/router";
 
 const AppNavigator = StackNavigator(
     {
-        Main: { screen: Drawer }
+        Auth: { screen: AuthenticationNavigator },
+        Main: { screen: MainNavigation }
     },
     {
-        initialRouteName: "Main",
+        initialRouteName: "Auth",
         headerMode: "none"
     }
 );

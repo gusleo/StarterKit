@@ -29,7 +29,7 @@ class HeaderCustom extends Component<PropsType, StateType> {
         title: ""
     };
 
-    backButtonPress = () => console.log( "back button press" );
+    backButtonPress = () => this.props.navigation.goBack();
 
     /**
      * Default right menu
@@ -50,19 +50,10 @@ class HeaderCustom extends Component<PropsType, StateType> {
      */
     renderLeftMenu() {
         const { isBack } = this.props;
-        if ( !isBack ) {
-            return (
-                <Button
-                    transparent
-                    onPress={ () => this.props.navigation.navigate( "DrawerOpen" ) }
-                >
-                    <Icon name="menu" />
-                </Button>
-            );
-        }
+
         return (
             <Button transparent onPress={ () => this.backButtonPress() }>
-                <Icon name="arrow-back" />
+                {isBack && <Icon name="arrow-back" />}
             </Button>
         );
     }

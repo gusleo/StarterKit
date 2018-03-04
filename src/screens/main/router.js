@@ -3,12 +3,10 @@ import { StackNavigator } from "react-navigation";
 import { Header } from "@components";
 import SideBar from "./sidebar";
 import HomeTabNavigator from "../main/home";
-import Login from "./auth/login";
 
 export default StackNavigator(
     {
-        Home: { screen: HomeTabNavigator },
-        Login: { screen: Login }
+        Home: { screen: HomeTabNavigator }
     },
     {
         initialRouteName: "Home",
