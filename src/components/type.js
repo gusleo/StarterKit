@@ -5,3 +5,8 @@ export type SlideType = {
     caption: string,
     url: string
 };
+
+export type OptionType = {
+    label: string,
+    value: string | number
+};

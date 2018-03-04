@@ -8,6 +8,7 @@ const platform = Platform.OS;
 const platformStyle = undefined;
 const isIphoneX =
   platform === "ios" && deviceHeight === 812 && deviceWidth === 375;
+  
 
 export default {
   platformStyle,

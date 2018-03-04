@@ -1,10 +1,20 @@
 import * as Expo from "expo";
 import React, { Component } from "react";
 import { StyleProvider } from "native-base";
+import { Provider } from "react-redux";
 
+import configureStore from "../module/store/configureStore";
+import rootSaga from "../module/sagas";
 import App from "../App";
 import getTheme from "../theme/components";
 import variables from "../theme/variables/commonColor";
+
+const roboto = require( "native-base/Fonts/Roboto.ttf" );
+const robotomedium = require( "native-base/Fonts/Roboto_medium.ttf" );
+const ionicons = require( "@expo/vector-icons/fonts/Ionicons.ttf" );
+
+const store = configureStore( window.__INITIAL_STATE__ );
+store.runSaga( rootSaga );
 
 export default class Setup extends Component {
     constructor() {
@@ -18,9 +28,9 @@ export default class Setup extends Component {
     }
     async loadFonts() {
         await Expo.Font.loadAsync( {
-            Roboto: require( "native-base/Fonts/Roboto.ttf" ),
-            Roboto_medium: require( "native-base/Fonts/Roboto_medium.ttf" ),
-            Ionicons: require( "@expo/vector-icons/fonts/Ionicons.ttf" )
+            Roboto: roboto,
+            Roboto_medium: robotomedium,
+            Ionicons: ionicons
         } );
         this.setState( { isReady: true } );
     }
@@ -30,7 +40,9 @@ export default class Setup extends Component {
         }
         return (
             <StyleProvider style={ getTheme( variables ) }>
-                <App />
+                <Provider store={ store }>
+                    <App />
+                </Provider>
             </StyleProvider>
         );
     }

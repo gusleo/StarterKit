@@ -1,12 +1,14 @@
 import React from "react";
 import { StackNavigator } from "react-navigation";
-import { Header } from "../../component";
+import { Header } from "@components";
 import SideBar from "./sidebar";
-import Home from "./home";
+import HomeTabNavigator from "../main/home";
+import Login from "./auth/login";
 
 export default StackNavigator(
     {
-        Home: { name: "MyGome", screen: Home }
+        Home: { screen: HomeTabNavigator },
+        Login: { screen: Login }
     },
     {
         initialRouteName: "Home",
@@ -14,8 +16,8 @@ export default StackNavigator(
         navigationOptions: ( { navigation } ) => ( {
             header: props => (
                 <Header
-                    useBackButton={
-                        navigation.routes != undefined &&
+                    isBack={
+                        navigation.routes !== undefined &&
                         navigation.routes.length > 1
                     }
                     navigation={ navigation }

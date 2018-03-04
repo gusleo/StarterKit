@@ -117,6 +117,7 @@ REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname' npm start
 ```
 
 Windows:
+
 ```
 set REACT_NATIVE_PACKAGER_HOSTNAME='my-custom-ip-address-or-hostname'
 npm start
@@ -200,6 +201,12 @@ If this works, but you're still unable to load your app by scanning the QR code,
 If you're not able to load the `http` URL in your phone's web browser, try using the tethering/mobile hotspot feature on your phone (beware of data usage, though), connecting your computer to that WiFi network, and restarting the packager.
 
 ### iOS Simulator won't open
+
+#### open from terminal
+
+1. xcrun simctl list
+2. xcrun simctl boot <DEVICE_ID>
+3. open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
 
 If you're on a Mac, there are a few errors that users sometimes see when attempting to `npm run ios`:
 

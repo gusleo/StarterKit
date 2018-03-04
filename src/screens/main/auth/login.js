@@ -1,9 +1,9 @@
 // @flow
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { View, StatusBar } from "react-native";
 import { Container, Button, Text, Spinner } from "native-base";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
-import { FancyIcon, Wallpaper } from "../../component/";
+import { FancyInput, Wallpaper } from "@components";
 
 import styles from "./styles";
 
@@ -15,7 +15,10 @@ type StateType = {
     username: string,
     password: string
 };
-class Login extends Component<PropsType, StateType> {
+class Login extends PureComponent<PropsType, StateType> {
+    static navigationOptions = {
+        title: "Log In"
+    };
     loginHandler() {
         this.props.navigation.navigate( "Main" );
     }
@@ -31,8 +34,8 @@ class Login extends Component<PropsType, StateType> {
                 <StatusBar barStyle="light-content" />
                 <Wallpaper useDefaultLogo>
                     <View style={ styles.loginForm }>
-                        <FancyIcon placeholder="Username" icon="mail" />
-                        <FancyIcon
+                        <FancyInput placeholder="Username" icon="mail" />
+                        <FancyInput
                             placeholder="Password"
                             icon="unlock"
                             password
@@ -40,7 +43,6 @@ class Login extends Component<PropsType, StateType> {
                         <Button
                             block
                             rounded
-                            warning
                             onPress={ () => this.loginHandler() }
                         >
                             {button}

@@ -10,7 +10,7 @@ import {
 import { Header, Button, Icon, Left, Body, Right, Title } from "native-base";
 
 type PropsType = {
-    useBackButton?: boolean,
+    isBack?: boolean,
     hasTabs?: boolean,
     title: string,
     navigation: NavigationScreenProp<NavigationState, *>,
@@ -24,21 +24,33 @@ type StateType = {};
 
 class HeaderCustom extends Component<PropsType, StateType> {
     static defaultProps = {
-        useBackButton: false,
-        hasTabs: false
+        isBack: false,
+        hasTab: false,
+        title: ""
     };
 
     backButtonPress = () => console.log( "back button press" );
 
+    /**
+     * Default right menu
+     * @memberof HeaderCustom
+     */
     renderRightMenu = () => (
         <Right>
-            <Button />
+            <Button transparent small />
         </Right>
     );
 
+    /**
+     * Define icon and function for headerLeft
+     * if isBack use navigate.back()
+     * else navigate to OpenDrawer
+     * @returns
+     * @memberof HeaderCustom
+     */
     renderLeftMenu() {
-        const { useBackButton } = this.props;
-        if ( !useBackButton ) {
+        const { isBack } = this.props;
+        if ( !isBack ) {
             return (
                 <Button
                     transparent
@@ -54,21 +66,37 @@ class HeaderCustom extends Component<PropsType, StateType> {
             </Button>
         );
     }
-
+    /**
+     * Render header menu by configuration from navigationOptions
+     * define from screen component
+     * @returns
+     * @memberof HeaderCustom
+     */
     render() {
-        const { getScreenDetails, scene } = this.props;
+        const { getScreenDetails, scene, hasTabs, title } = this.props;
         const details = getScreenDetails( scene );
+
+        // get navigationOptions
         const { options } = details;
 
+        /**
+         * if navigationOptions on Screen have headerRight
+         * then use Screen headerRight
+         * else use default
+         */
+
         return (
-            <Header hasTabs={ this.props.hasTabs }>
+            <Header hasTabs={ options.hasTabs || hasTabs }>
                 <Left>{this.renderLeftMenu()}</Left>
 
                 <Body>
-                    <Title>{options.title || ""}</Title>
+                    <Title>{options.title || title}</Title>
                 </Body>
-
-                {this.renderRightMenu()}
+                {options.headerRight ? (
+                    <Right>{options.headerRight}</Right>
+                ) : (
+                    this.renderRightMenu()
+                )}
             </Header>
         );
     }

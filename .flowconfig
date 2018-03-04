@@ -22,6 +22,9 @@
 ; Ignore RNTester
 <PROJECT_ROOT>/node_modules/react-native/RNTester/.*
 
+; Ignore React-Navigation-Redux-Helper
+<PROJECT_ROOT>/node_modules/react-navigation-redux-helpers/src/.*
+
 ; Ignore the website subdir
 <PROJECT_ROOT>/node_modules/react-native/website/.*
 
@@ -93,6 +96,8 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 unsafe.enable_getters_and_setters=true
+
+
 
 [version]
 ^0.56.0

@@ -1,19 +1,20 @@
 // @flow
 
-import * as React from "react";
+import React, { type Node } from "react";
 import {
     ImageBackground,
     Image,
     View,
     StyleSheet,
     Dimensions,
-    Platform
+    PixelRatio
 } from "react-native";
 
 const launchscreenBg = require( "../../assets/launchscreen-bg.png" );
 const launchscreenLogo = require( "../../assets/logo-kitchen-sink.png" );
 
-const deviceHeight = Dimensions.get( "window" ).height;
+const { width, height } = Dimensions.get( "window" );
+const pixelWidth = PixelRatio.getPixelSizeForLayoutSize( width ) / 2 - 20;
 
 const styles = StyleSheet.create( {
     imageContainer: {
@@ -23,21 +24,21 @@ const styles = StyleSheet.create( {
     },
     logoContainer: {
         flex: 1,
-        marginTop: deviceHeight / 9,
-        marginBottom: 30
+        marginTop: height / 8,
+        marginBottom: 40,
+        justifyContent: "center",
+        alignItems: "center"
     },
     logo: {
-        position: "absolute",
-        left: Platform.OS === "android" ? 40 : 50,
-        top: Platform.OS === "android" ? 35 : 60,
-        width: 280,
-        height: 100
+        alignItems: "center",
+        width: pixelWidth > 500 ? 350 : pixelWidth,
+        resizeMode: "contain"
     }
 } );
 
 type PropsType = {
     useDefaultLogo?: boolean,
-    children?: React.Node
+    children?: Node
 };
 
 const Wallpaper = ( { useDefaultLogo, children }: PropsType ) => (

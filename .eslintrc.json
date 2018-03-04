@@ -6,6 +6,7 @@
     },
     "settings": {
         "import/resolver": {
+            "babel-module": {},
             "node": {
                 "extensions": [".js", ".android.js", ".ios.js", ".js.flow"],
                 "paths": ["src"]
@@ -36,7 +37,9 @@
         "quotes": [2, "double", "avoid-escape"],
         "no-console": "off",
         "prefer-const": 1,
-        "complexity": [1, 5],
+        "complexity": [1, 10],
+        "no-underscore-dangle": [1, { "allowAfterThis": true }],
+        "no-nested-ternary": [1],
         "react/prefer-es6-class": 0,
         "react/jsx-filename-extension": 0,
         "react/jsx-curly-spacing": [2, "always"],
@@ -47,7 +50,14 @@
         "flowtype/generic-spacing": [2, "never"],
         "flowtype/no-primitive-constructor-types": 2,
         "flowtype/no-types-missing-file-annotation": 2,
-        "flowtype/no-weak-types": 2,
+        "flowtype/no-weak-types": [
+            2,
+            {
+                "any": false,
+                "Object": true,
+                "Function": true
+            }
+        ],
         "flowtype/object-type-delimiter": [2, "comma"],
         "flowtype/semi": [2, "always"],
         "flowtype/space-after-type-colon": [2, "always"],

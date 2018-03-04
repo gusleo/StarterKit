@@ -27,7 +27,7 @@ type PropsType = {
     placeholder?: string
 };
 
-const FancyIcon = ( {
+const FancyInput = ( {
     icon,
     password,
     placeholder,
@@ -44,10 +44,10 @@ const FancyIcon = ( {
     </Item>
 );
 
-FancyIcon.defaultProps = {
+FancyInput.defaultProps = {
     password: false,
     placeholder: "",
     placeholderTextColor: "#CCC"
 };
 
-export default FancyIcon;
+export default FancyInput;
