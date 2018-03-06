@@ -8,7 +8,7 @@ export default [
     },
     {
         key: 2,
-        name: "About Us",
+        name: "Perkuliahan",
         route: "about",
         icon: "ios-information-circle",
         bg: "#C5F442",
@@ -58,16 +58,16 @@ export default [
     },
     {
         key: 3,
-        name: "Pendaftaran",
+        name: "Penilaian",
         route: "pendaftaran",
         icon: "ios-paper",
         bg: "#C5F442"
     },
     {
         key: 4,
-        name: "Contact Us",
+        name: "Profile",
         route: "contact",
-        icon: "call",
+        icon: "person",
         bg: "#C5F442"
     },
     {

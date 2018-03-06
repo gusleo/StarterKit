@@ -50,10 +50,19 @@ class HeaderCustom extends Component<PropsType, StateType> {
      */
     renderLeftMenu() {
         const { isBack } = this.props;
-
+        if ( !isBack ) {
+            return (
+                <Button
+                    transparent
+                    onPress={ () => this.props.navigation.navigate( "DrawerOpen" ) }
+                >
+                    <Icon name="menu" />
+                </Button>
+            );
+        }
         return (
             <Button transparent onPress={ () => this.backButtonPress() }>
-                {isBack && <Icon name="arrow-back" />}
+                <Icon name="arrow-back" />
             </Button>
         );
     }

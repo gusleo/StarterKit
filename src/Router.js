@@ -1,11 +1,11 @@
 import { StackNavigator } from "react-navigation";
 import AuthenticationNavigator from "./screens/auth/router";
-import MainNavigation from "./screens/main/router";
+import Drawer from "./screens/main/drawer";
 
 const AppNavigator = StackNavigator(
     {
         Auth: { screen: AuthenticationNavigator },
-        Main: { screen: MainNavigation }
+        Main: { screen: Drawer }
     },
     {
         initialRouteName: "Auth",
