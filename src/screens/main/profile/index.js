@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Container, Tabs, Tab, Button, Icon, Text } from "native-base";
 import { reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import globalStyles from "../../../../boot/globalStyle";
+import globalStyles from "../globalStyle";
 import Identity from "./identity";
 import Background from "./background";
 import History from "./history";

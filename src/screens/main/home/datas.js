@@ -1,75 +1,37 @@
 // @flow
-export const studyResult = [
+export default [
     {
         type: "header",
-        title: "Semester I",
-        value: "2017/2018"
+        title: "Senin",
+        value: "01/01/2018"
     },
     {
         type: "courses",
-        code: "MKI101",
         title: "Sosiologi Politik",
-        sks: 2,
-        value: "A",
-        total: 8
+        schedule: "09.00 - 12.00",
+        value: "2 SKS"
     },
     {
         type: "courses",
-        code: "MKI102",
-        title: "Antropilogi",
-        sks: 3,
-        value: "A",
-        total: 12
-    },
-    {
-        type: "total",
-        title: "IP Semester",
-        value: 3.6
+        title: "Antropologi",
+        schedule: "13.00 - 16.00",
+        value: "3 SKS"
     },
     {
         type: "header",
-        title: "Semester II",
-        value: "2017/2018"
+        title: "Selasa",
+        value: "01/01/2018"
     },
     {
         type: "courses",
-        code: "MKI101",
         title: "Sosiologi Politik",
-        sks: 2,
-        value: "A",
-        total: 8
+        schedule: "09.00 - 12.00",
+        value: "2 SKS"
     },
     {
         type: "courses",
-        code: "MKI102",
-        title: "Antropilogi",
-        sks: 3,
-        value: "A",
-        total: 12
-    },
-    {
-        type: "total",
-        title: "IP Semester",
-        value: 3.6
-    }
-];
-
-export const payments = [
-    {
-        title: "SPP Semester III",
-        isPaidOff: false,
-        total: "Rp. 500.000, -"
-    },
-    {
-        title: "SPP Semester II",
-        isPaidOff: true,
-        total: "Rp. 500.000, -",
-        paymentDate: "02/02/2018"
-    },
-    {
-        title: "SPP Semester I",
-        isPaidOff: true,
-        total: "Rp. 500.000, -",
-        paymentDate: "02/02/2018"
+        title: "Antropologi",
+        schedule: "13.00 - 16.00",
+        value: "3 SKS"
     }
 ];

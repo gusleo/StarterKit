@@ -1,17 +1,8 @@
 // @flow
-export type StudyType = {
+export type ScheduleType = {
     type: string,
     title: string,
-    code: string,
+    schedule: string,
     sks: string,
-    name: string,
-    value: string | number,
-    total: number
-};
-
-export type PaymentType = {
-    title: string,
-    total: string,
-    paymentDate?: string,
-    isPaidOff: boolean
+    value: string | number
 };

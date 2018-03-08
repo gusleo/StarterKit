@@ -2,10 +2,9 @@
 import React from "react";
 import { TabNavigator, TabBarBottom } from "react-navigation";
 import { Ionicons } from "@expo/vector-icons";
-import News from "./news";
-import Profile from "./profile";
-import Payment from "./payment";
-import Study from "./study";
+import Schedule from "./schedule";
+import LectureNavigation from "./lectures/router";
+import AssessmentNavigation from "./assessment/router";
 
 type PropType = {
     focused: boolean,
@@ -13,10 +12,9 @@ type PropType = {
 };
 export default TabNavigator(
     {
-        News: { screen: News },
-        KHS: { screen: Study },
-        Payment: { screen: Payment },
-        Profile: { screen: Profile }
+        Schedule: { screen: Schedule },
+        Lectures: { screen: LectureNavigation },
+        Assessment: { screen: AssessmentNavigation }
     },
     {
         navigationOptions: ( { navigation } ) => ( {
@@ -24,17 +22,14 @@ export default TabNavigator(
                 const { routeName } = navigation.state;
                 let label: string = "";
                 switch ( routeName ) {
-                case "News":
-                    label = "Berita";
+                case "Schedule":
+                    label = "Jadwal";
                     break;
-                case "KHS":
-                    label = "KHS";
+                case "Lectures":
+                    label = "Perkuliahan";
                     break;
-                case "Payment":
-                    label = "Pembayaran";
-                    break;
-                case "Profile":
-                    label = "Profil";
+                case "Assessment":
+                    label = "Penilaian";
                     break;
                 default:
                     label = "";
@@ -45,16 +40,12 @@ export default TabNavigator(
             tabBarIcon: ( { focused, tintColor }: PropType ) => {
                 const { routeName } = navigation.state;
                 let iconName;
-                if ( routeName === "News" ) {
-                    iconName = `ios-information-circle${
-                        focused ? "" : "-outline"
-                    }`;
-                } else if ( routeName === "KHS" ) {
+                if ( routeName === "Schedule" ) {
+                    iconName = `ios-alarm${ focused ? "" : "-outline" }`;
+                } else if ( routeName === "Lectures" ) {
+                    iconName = `ios-school${ focused ? "" : "-outline" }`;
+                } else if ( routeName === "Assessment" ) {
                     iconName = `ios-clipboard${ focused ? "" : "-outline" }`;
-                } else if ( routeName === "Payment" ) {
-                    iconName = `ios-cash${ focused ? "" : "-outline" }`;
-                } else if ( routeName === "Profile" ) {
-                    iconName = `ios-contact${ focused ? "" : "-outline" }`;
                 }
 
                 // You can return any component that you like here! We usually use an
