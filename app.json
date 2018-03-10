@@ -1,7 +1,7 @@
 {
   "expo": {
     "sdkVersion": "25.0.0",
-    "slug": "ugsstudent",
+    "slug": "ugslecture",
     "loading": {
       "hideExponentText": true,
       "backgroundImage": "./assets/splashscreen.png"
@@ -18,6 +18,6 @@
       "barStyle": "light-content",
       "backgroundColor": "#334393"
     },
-    "name": "UGSStudent"
+    "name": "UGSLecture"
   }
 }

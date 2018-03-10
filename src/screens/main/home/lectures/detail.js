@@ -30,7 +30,7 @@ type InputType = {
 };
 
 const RenderNumeric = ( { input }: InputType ) => (
-    <Input width={ 50 } value={ input.value } keyboardType="numeric" { ...input } />
+    <Input width={ 50 } keyboardType="numeric" { ...input } />
 );
 
 class Detail extends Component<PropType, StateType> {

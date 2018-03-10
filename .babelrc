@@ -1,23 +1,22 @@
 {
     "presets": ["babel-preset-expo", "flow"],
     "retainLines": true,
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": ["./src"],
+                "alias": {
+                    "@components": "./src/components/",
+                    "@type": "./src/module/type",
+                    "@boot": "./src/boot/"
+                }
+            }
+        ]
+    ],
     "env": {
         "development": {
-            "plugins": [
-                "transform-react-jsx-source",
-                [
-                    "module-resolver",
-                    {
-                        "root": ["./src"],
-                        "cwd": "babelrc",
-                        "alias": {
-                            "@components": "./src/components/",
-                            "@type": "./src/module/type",
-                            "@boot": "./src/boot/"
-                        }
-                    }
-                ]
-            ]
+            "plugins": ["transform-react-jsx-source"]
         }
     }
 }

@@ -6,11 +6,13 @@ import { Container, Content, Button, Text } from "native-base";
 import { FontAwesome } from "@expo/vector-icons";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
-
+import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { RenderSelect } from "@components";
 import globalStyle from "../../globalStyle";
 
-type PropType = {};
+type PropType = {
+    navigation: NavigationScreenProp<NavigationState, *>
+};
 type StateType = {};
 
 class Assement extends Component<PropType, StateType> {
@@ -18,6 +20,9 @@ class Assement extends Component<PropType, StateType> {
         title: "Penilaian"
     };
 
+    _startAssesment() {
+        this.props.navigation.navigate( "Detail" );
+    }
     render() {
         return (
             <Container style={ globalStyle.container }>
@@ -42,7 +47,11 @@ class Assement extends Component<PropType, StateType> {
                     />
 
                     <View style={ { paddingTop: 10 } }>
-                        <Button block rounded>
+                        <Button
+                            block
+                            rounded
+                            onPress={ () => this._startAssesment() }
+                        >
                             <FontAwesome name="save" style={ globalStyle.icon } />
                             <Text>MULAI</Text>
                         </Button>
