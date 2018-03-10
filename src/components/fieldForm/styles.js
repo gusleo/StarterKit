@@ -7,6 +7,9 @@ export default StyleSheet.create( {
     label: {
         width: 150
     },
+    stackedlabel: {
+        fontSize: 17
+    },
     groupContainerHorizontal: {
         flex: 1,
         flexDirection: "row",
@@ -38,6 +41,7 @@ export default StyleSheet.create( {
         fontSize: 12,
         color: "red"
     },
+    /** Need explore more for picker on iOS */
     pickerStack: {
         width: PixelRatio.getPixelSizeForLayoutSize( width ) / 2
     },

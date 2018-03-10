@@ -43,6 +43,7 @@ class Login extends PureComponent<PropsType, StateType> {
                         <Button
                             block
                             rounded
+                            warning
                             onPress={ () => this.loginHandler() }
                         >
                             {button}

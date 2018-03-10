@@ -5,14 +5,15 @@ import {
     NavigationState,
     NavigationScene,
     NavigationScreenDetails,
-    NavigationStackScreenOptions
+    NavigationStackScreenOptions,
+    NavigationActions
 } from "react-navigation";
 import { Header, Button, Icon, Left, Body, Right, Title } from "native-base";
 
 type PropsType = {
-    isBack?: boolean,
     hasTabs?: boolean,
     title: string,
+    isBack?: boolean,
     navigation: NavigationScreenProp<NavigationState, *>,
     getScreenDetails: (
         scene: NavigationScene
@@ -24,12 +25,13 @@ type StateType = {};
 
 class HeaderCustom extends Component<PropsType, StateType> {
     static defaultProps = {
-        isBack: false,
         hasTab: false,
+        isBack: false,
         title: ""
     };
 
-    backButtonPress = () => this.props.navigation.goBack();
+    backButtonPress = () =>
+        this.props.navigation.dispatch( NavigationActions.back() );
 
     /**
      * Default right menu
@@ -48,9 +50,8 @@ class HeaderCustom extends Component<PropsType, StateType> {
      * @returns
      * @memberof HeaderCustom
      */
-    renderLeftMenu() {
-        const { isBack } = this.props;
-        if ( !isBack ) {
+    renderLeftMenu( enableBackButton: boolean ) {
+        if ( !enableBackButton ) {
             return (
                 <Button
                     transparent
@@ -73,7 +74,7 @@ class HeaderCustom extends Component<PropsType, StateType> {
      * @memberof HeaderCustom
      */
     render() {
-        const { getScreenDetails, scene, hasTabs, title } = this.props;
+        const { getScreenDetails, scene, hasTabs, title, isBack } = this.props;
         const details = getScreenDetails( scene );
 
         // get navigationOptions
@@ -84,10 +85,10 @@ class HeaderCustom extends Component<PropsType, StateType> {
          * then use Screen headerRight
          * else use default
          */
-
+        const enableBackButton = options.isBack || isBack;
         return (
             <Header hasTabs={ options.hasTabs || hasTabs }>
-                <Left>{this.renderLeftMenu()}</Left>
+                <Left>{this.renderLeftMenu( enableBackButton )}</Left>
 
                 <Body>
                     <Title>{options.title || title}</Title>

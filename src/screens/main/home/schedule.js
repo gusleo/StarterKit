@@ -9,10 +9,9 @@ import {
     Body,
     Right
 } from "native-base";
-
+import type { ScheduleType } from "@type";
 import { Bold } from "@components";
 import globalStyles from "../globalStyle";
-import type { ScheduleType } from "./types";
 
 import styles from "./styles";
 import schedules from "./datas";

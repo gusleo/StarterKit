@@ -29,7 +29,7 @@
             "request": "attach",
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/.vscode/.react",
-            "port": "19000"
+            "port": "19001"
         },
         {
             "name": "Debug in Exponent",

@@ -1,8 +1,8 @@
 // @flow
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Input, Button } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import { Foundation } from "@expo/vector-icons";
 import moment from "moment";
 import DateTimePicker from "react-native-modal-datetime-picker";
 
@@ -10,14 +10,13 @@ type PropType = {
     minimumDate: ?Date,
     maximumDate: ?Date,
     placeholder: ?string,
-    useSmallButton: ?boolean,
     value: ?string | ?Date,
     onChange: ( dateText: string ) => mixed
 };
 
 type StateType = {
-    dateText: string,
-    dateHolder: Date,
+    dateText: ?string,
+    dateHolder: ?Date,
     isDateTimePickerVisible: boolean,
     format: string
 };
@@ -26,11 +25,12 @@ const styles = StyleSheet.create( {
     container: {
         flex: 1,
         flexDirection: "row",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        alignItems: "center"
     },
     calendar: {
-        fontSize: 22,
-        color: "#FFF",
+        fontSize: 32,
+        color: "#f9ab19",
         padding: 0
     },
     button: {
@@ -44,18 +44,23 @@ export default class DatePicker extends Component<PropType, StateType> {
         minimumDate: undefined,
         maximumdate: undefined,
         placeholder: "",
-        useSmallButton: false,
         value: null
     };
-    static state = {
-        format: "MM/DD/YYYY"
+
+    state = {
+        format: "MM/DD/YYYY",
+        isDateTimePickerVisible: false,
+        dateText: moment().format( "MM/DD/YYYY" ),
+        dateHolder: moment().toDate()
     };
 
-    componenentWillUpdate( nextProps: PropType ) {
-        const { dateText, dateHolder } = this._getDateAndDateText( nextProps );
-        this.setState( { dateText, dateHolder } );
+    shouldComponentUpdate( nextProps: PropType, nextState: StateType ) {
+        if ( this.props !== nextProps || this.state !== nextState ) return true;
+        return false;
     }
-
+    componentWillUpdate( nextProps: PropType ) {
+        this._getDateAndDateText( nextProps );
+    }
     _getDateAndDateText = ( currentProps: PropType ) => {
         const { value } = currentProps;
         let dateHolder: Date;
@@ -100,23 +105,14 @@ export default class DatePicker extends Component<PropType, StateType> {
 
     render() {
         const { dateText, dateHolder, isDateTimePickerVisible } = this.state;
-        const {
-            placeholder,
-            minimumDate,
-            maximumDate,
-            useSmallButton
-        } = this.props;
+        const { placeholder, minimumDate, maximumDate } = this.props;
 
         return (
             <View style={ styles.container }>
                 <Input value={ dateText } placeholder={ placeholder } />
-                <Button
-                    style={ styles.button }
-                    onPress={ () => this._showDateTimePicker() }
-                    small={ useSmallButton }
-                >
-                    <Ionicons name="calendar" style={ styles.calendar } />
-                </Button>
+                <TouchableOpacity onPress={ () => this._showDateTimePicker() }>
+                    <Foundation name="calendar" style={ styles.calendar } />
+                </TouchableOpacity>
                 <DateTimePicker
                     mode="date"
                     date={ dateHolder }

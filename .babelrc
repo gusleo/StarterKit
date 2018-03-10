@@ -12,6 +12,7 @@
                         "cwd": "babelrc",
                         "alias": {
                             "@components": "./src/components/",
+                            "@type": "./src/module/type",
                             "@boot": "./src/boot/"
                         }
                     }

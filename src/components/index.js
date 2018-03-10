@@ -7,7 +7,12 @@ import Slideshow from "./slideshow";
 import SubHeader from "./subHeader";
 import HtmlWrapper from "./htmlWrapper";
 import { Bold, Italic } from "./fontStyle";
-import { RenderInput, RenderSelect } from "./fieldForm";
+import {
+    RenderInput,
+    RenderSelect,
+    RenderDatePicker,
+    RenderTextarea
+} from "./fieldForm";
 
 module.exports = {
     Avatar,
@@ -20,5 +25,7 @@ module.exports = {
     Italic,
     RenderInput,
     RenderSelect,
+    RenderDatePicker,
+    RenderTextarea,
     HtmlWrapper
 };

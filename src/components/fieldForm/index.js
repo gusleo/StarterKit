@@ -1,8 +1,9 @@
 // @flow
 import React from "react";
 import { StyleSheet, Dimensions, PixelRatio } from "react-native";
-import { Input, Picker } from "native-base";
+import { Input, Picker, Textarea } from "native-base";
 import type { MetaProps, InputProps } from "redux-form/es/Field";
+import DatePicker from "../datepicker";
 import FieldItem from "./fieldItem";
 import styles from "./styles";
 import type { OptionType } from "../type";
@@ -83,4 +84,52 @@ RenderSelect.defaultProps = {
     placeholder: ""
 };
 
-export { RenderInput, RenderSelect };
+const RenderDatePicker = ( {
+    input,
+    meta,
+    label,
+    labelStyle,
+    placeholder
+}: PropType ) => (
+    <FieldItem
+        meta={ meta }
+        label={ label }
+        labelStyle={ labelStyle }
+        placeholder={ placeholder }
+        stacked={ stacked }
+    >
+        <DatePicker { ...input } />
+    </FieldItem>
+);
+RenderDatePicker.defaultProps = {
+    placeholder: ""
+};
+
+type TextareaType = PropType & {
+    rowSpan: number
+};
+
+const RenderTextarea = ( {
+    input,
+    meta,
+    label,
+    rowSpan,
+    labelStyle,
+    placeholder
+}: TextareaType ) => (
+    <FieldItem
+        meta={ meta }
+        label={ label }
+        labelStyle={ labelStyle }
+        placeholder={ placeholder }
+        stacked
+    >
+        <Textarea rowSpan={ rowSpan } { ...input } />
+    </FieldItem>
+);
+
+RenderTextarea.defaultProps = {
+    placeholder: ""
+};
+
+export { RenderInput, RenderSelect, RenderDatePicker, RenderTextarea };

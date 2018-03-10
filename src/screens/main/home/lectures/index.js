@@ -1,20 +1,29 @@
 // @flow
 
 import React, { Component } from "react";
-import { Container, Content } from "native-base";
+import { View } from "react-native";
+import { Container, Content, Button, Text } from "native-base";
+import { FontAwesome } from "@expo/vector-icons";
 import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
+import { NavigationScreenProp, NavigationState } from "react-navigation";
 
-import { RenderSelect, RenderInput } from "@components";
+import { RenderSelect, RenderDatePicker, RenderTextarea } from "@components";
 import globalStyle from "../../globalStyle";
 
-type PropType = {};
+type PropType = {
+    navigation: NavigationScreenProp<NavigationState, *>
+};
 type StateType = {};
 
 class Lectures extends Component<PropType, StateType> {
     static navigationOptions = {
         title: "Perkuliahan"
     };
+
+    _startLectures() {
+        this.props.navigation.navigate( "Detail" );
+    }
 
     render() {
         return (
@@ -39,14 +48,26 @@ class Lectures extends Component<PropType, StateType> {
                         ] }
                     />
                     <Field
-                        name="Pertemuan"
-                        label="Pertemuan Ke-"
-                        component={ RenderSelect }
-                        options={ [
-                            { value: 0, label: "1" },
-                            { value: 1, label: "2" }
-                        ] }
+                        name="Tanggal"
+                        label="Tanggal"
+                        component={ RenderDatePicker }
                     />
+                    <Field
+                        name="Materi"
+                        label="Materi"
+                        rowSpan={ 5 }
+                        component={ RenderTextarea }
+                    />
+                    <View style={ { paddingTop: 10, marginBottom: 10 } }>
+                        <Button
+                            block
+                            rounded
+                            onPress={ () => this._startLectures() }
+                        >
+                            <FontAwesome name="save" style={ globalStyle.icon } />
+                            <Text>MULAI</Text>
+                        </Button>
+                    </View>
                 </Content>
             </Container>
         );
@@ -54,7 +75,8 @@ class Lectures extends Component<PropType, StateType> {
 }
 
 const LecturesForm = reduxForm( {
-    form: "lectureForm"
+    form: "lectureForm",
+    enableReinitialize: true
 } )( Lectures );
 
 const mapStateToProps = () => ( {

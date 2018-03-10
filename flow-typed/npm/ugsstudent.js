@@ -5,3 +5,7 @@ declare module "@components" {
 declare module "@boot" {
     declare module.exports: any;
 }
+
+declare module "@type" {
+    declare module.exports: any;
+}

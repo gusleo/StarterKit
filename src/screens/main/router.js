@@ -14,10 +14,7 @@ export default StackNavigator(
         navigationOptions: ( { navigation } ) => ( {
             header: props => (
                 <Header
-                    isBack={
-                        navigation.routes !== undefined &&
-                        navigation.routes.length > 1
-                    }
+                    isBack={ !navigation.state.index === 1 }
                     navigation={ navigation }
                     { ...props }
                 />
