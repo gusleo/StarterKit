@@ -7,12 +7,7 @@ import { RenderInput, SubHeader } from "@components";
 
 const Background = () => (
     <Content padder>
-        <SubHeader title="Latar Belakang Pekerjaan" />
-        <Field name="OfficeName" label="Nama Kantor" component={ RenderInput } />
-        <Field name="Position" label="Jabatan" component={ RenderInput } />
-        <Field name="Address" label="Alamat" component={ RenderInput } />
-        <Field name="Phone" label="Telepon" component={ RenderInput } />
-
+        
         <SubHeader title="Pendidikan Sekolah Dasar" />
 
         <Field
@@ -81,6 +76,28 @@ const Background = () => (
 
         <Field
             name="UniversityGraduateYear"
+            label="Tahun Tamat"
+            component={ RenderInput }
+        />
+        <SubHeader title="Pendidikan Perguruan Tinggi (S2)" />
+        <Field
+            name="UniversityMasterName"
+            label="Nama Universitas"
+            component={ RenderInput }
+        />
+        <Field
+            name="UniversityMasterDegree"
+            label="Jurusan"
+            component={ RenderInput }
+        />
+        <Field
+            name="UniversityMasterAddress"
+            label="Alamat"
+            component={ RenderInput }
+        />
+
+        <Field
+            name="UniversityMasterGraduateYear"
             label="Tahun Tamat"
             component={ RenderInput }
         />

@@ -16,13 +16,7 @@ type PropType = {
 
 export default ( { label, meta, labelStyle, children, stacked }: PropType ) => (
     <Item stackedLabel={ stacked } error={ meta.error && meta.touched }>
-        <Label
-            style={
-                !stacked
-                    ? [ styles.label, labelStyle ]
-                    : [ styles.stackedlabel, labelStyle ]
-            }
-        >
+        <Label style={ !stacked ? [ styles.label, labelStyle ] : [ labelStyle ] }>
             {label}
         </Label>
         {children}

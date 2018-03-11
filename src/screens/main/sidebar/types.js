@@ -13,6 +13,7 @@ export type SubMenuType = {
 
 export type MenuType = {
     key: number,
+    type: "Route" | "SignOut",
     name: string,
     route: string,
     icon: string,

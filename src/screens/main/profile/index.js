@@ -31,7 +31,7 @@ class Student extends Component<PropType, StateType> {
                         <History />
                     </Tab>
                 </Tabs>
-                <Button iconLeft block warning style={ { margin: 10 } }>
+                <Button iconLeft block style={ { margin: 10 } }>
                     <Icon active name="clipboard" />
                     <Text>Simpan</Text>
                 </Button>

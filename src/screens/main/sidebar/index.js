@@ -34,25 +34,27 @@ export default class SideBar extends Component<PropType, StateType> {
     };
 
     _onMenuClickHandler( data: MenuType ) {
-        if ( !isNull( data.submenu ) && data.submenu !== undefined ) {
-            // if have submenu, find the index
-            // and change the value
-            // re-render component by setState
-            const menus = [ ...this.state.datas ];
-            const index = menus.findIndex( val => val.key === data.key );
+        if ( data.type === "Route" ) {
+            if ( !isNull( data.submenu ) && data.submenu !== undefined ) {
+                // if have submenu, find the index
+                // and change the value
+                // re-render component by setState
+                const menus = [ ...this.state.datas ];
+                const index = menus.findIndex( val => val.key === data.key );
 
-            if ( index > -1 ) {
-                menus[ index ].collapsed = !data.collapsed;
+                if ( index > -1 ) {
+                    menus[ index ].collapsed = !data.collapsed;
+                }
+
+                this.setState( { datas: menus } );
+            } else {
+                this.props.navigation.navigate( data.route );
             }
-
-            this.setState( { datas: menus } );
-        } else if ( data.isSignOut ) {
+        } else if ( data.type === "SignOut" ) {
             Alert.alert( "", "Are you sure you want to logout?", [
                 { text: "Cancel", style: "cancel" },
                 { text: "Log Out", onPress: () => this._onLogoutHandler() }
             ] );
-        } else {
-            this.props.navigation.navigate( data.route );
         }
     }
 

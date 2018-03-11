@@ -10,8 +10,8 @@ import {
     Input,
     Button
 } from "native-base";
-import { ListView, ListViewDataSource } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { ListView, ListViewDataSource, View } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { Bold } from "@components";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
@@ -66,6 +66,8 @@ class Detail extends Component<PropType, StateType> {
         }
         return { Status: text, Color: color };
     };
+
+    _endLectures = () => console.log( "END" );
     _renderRow = ( item, index ) => {
         const name = `Mahasiswa[${ index }].value`;
         const { Status, Color } = this._defineColorAndTextStatus( item.status );
@@ -105,6 +107,12 @@ class Detail extends Component<PropType, StateType> {
                     ) }
                     rightOpenValue={ -75 }
                 />
+                <View style={ { padding: 10 } }>
+                    <Button block rounded onPress={ () => this._endLectures() }>
+                        <FontAwesome name="save" style={ globalStyle.icon } />
+                        <Text>SELESAI</Text>
+                    </Button>
+                </View>
             </Container>
         );
     }

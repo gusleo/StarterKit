@@ -3,10 +3,14 @@ import { StackNavigator } from "react-navigation";
 import { Header } from "@components";
 import SideBar from "./sidebar";
 import HomeTabNavigator from "../main/home";
+import ELearning from "./eLearningCenter";
+import Profile from "./profile";
 
 export default StackNavigator(
     {
-        Home: { screen: HomeTabNavigator }
+        Home: { screen: HomeTabNavigator },
+        ELearning: { screen: ELearning },
+        Profile: { screen: Profile }
     },
     {
         initialRouteName: "Home",

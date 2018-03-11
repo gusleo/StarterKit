@@ -4,6 +4,6 @@ const { StyleSheet } = React;
 
 export default StyleSheet.create( {
     smallnote: {
-        fontSize: 13
+        fontSize: 11
     }
 } );

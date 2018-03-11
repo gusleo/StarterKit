@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { StyleSheet, Dimensions, PixelRatio } from "react-native";
+import { StyleSheet, Dimensions, PixelRatio, View } from "react-native";
 import { Input, Picker, Textarea } from "native-base";
 import type { MetaProps, InputProps } from "redux-form/es/Field";
 import DatePicker from "../datepicker";
@@ -124,7 +124,22 @@ const RenderTextarea = ( {
         placeholder={ placeholder }
         stacked
     >
-        <Textarea rowSpan={ rowSpan } { ...input } />
+        <View
+            style={ {
+                flex: 1,
+                flexDirection: "row"
+            } }
+        >
+            <Textarea
+                bordered
+                style={ {
+                    flex: 1
+                } }
+                placeholder={ placeholder }
+                rowSpan={ rowSpan }
+                { ...input }
+            />
+        </View>
     </FieldItem>
 );
 

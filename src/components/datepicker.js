@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Input, Button } from "native-base";
+import { Input } from "native-base";
 import { Foundation } from "@expo/vector-icons";
 import moment from "moment";
 import DateTimePicker from "react-native-modal-datetime-picker";
@@ -10,7 +10,7 @@ type PropType = {
     minimumDate: ?Date,
     maximumDate: ?Date,
     placeholder: ?string,
-    value: ?string | ?Date,
+    value?: string | ?Date,
     onChange: ( dateText: string ) => mixed
 };
 

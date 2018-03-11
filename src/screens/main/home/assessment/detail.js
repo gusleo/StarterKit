@@ -1,79 +1,162 @@
+// @flow
 import React, { Component } from "react";
-import { ListView } from "react-native";
 import {
     Container,
-    Content,
-    Button,
-    Icon,
     List,
     ListItem,
-    Text
+    Text,
+    Body,
+    Right,
+    Input,
+    Button
 } from "native-base";
+import { View, StyleSheet } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { Bold } from "@components";
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import type { StudentAssessmentType } from "@type";
+import type { InputProps } from "redux-form/es/Field";
+import data from "./datas";
+import globalStyle from "../../globalStyle";
 
-const datas = [
-    "Simon Mignolet",
-    "Nathaniel Clyne",
-    "Dejan Lovren",
-    "Mama Sakho",
-    "Alberto Moreno",
-    "Emre Can",
-    "Joe Allen",
-    "Phil Coutinho"
-];
-export default class SwipeableListExample extends Component {
-    constructor( props ) {
-        super( props );
-        this.ds = new ListView.DataSource( {
-            rowHasChanged: ( r1, r2 ) => r1 !== r2
-        } );
-        this.state = {
-            basic: true,
-            listViewData: datas
-        };
+type PropType = {
+    results?: Array<StudentAssessmentType>
+};
+type StateType = {};
+
+type InputType = {
+    input: InputProps,
+    label: string
+};
+
+const styles = StyleSheet.create( {
+    inputContainer: {
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+        padding: 5
+    },
+    input: {
+        borderColor: "#CCC",
+        borderWidth: 0.5,
+        textAlign: "center"
+    },
+    infoContainer: {
+        flex: 1,
+        flexDirection: "row"
+    },
+    info: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "flex-start"
+    },
+    infoSummary: {
+        color: "#0000FF",
+        fontWeight: "bold"
     }
-    deleteRow( secId, rowId, rowMap ) {
-        rowMap[ `${ secId }${ rowId }` ].props.closeRow();
-        const newData = [ ...this.state.listViewData ];
-        newData.splice( rowId, 1 );
-        this.setState( { listViewData: newData } );
-    }
-    render() {
-        const ds = new ListView.DataSource( {
-            rowHasChanged: ( r1, r2 ) => r1 !== r2
-        } );
-        return (
-            <Container>
-                <Content>
-                    <List
-                        dataSource={ this.ds.cloneWithRows(
-                            this.state.listViewData
-                        ) }
-                        renderRow={ data => (
-                            <ListItem>
-                                <Text> {data} </Text>
-                            </ListItem>
-                        ) }
-                        renderLeftHiddenRow={ data => (
-                            <Button full onPress={ () => alert( data ) }>
-                                <Icon active name="information-circle" />
-                            </Button>
-                        ) }
-                        renderRightHiddenRow={ ( data, secId, rowId, rowMap ) => (
-                            <Button
-                                full
-                                danger
-                                onPress={ _ =>
-                                    this.deleteRow( secId, rowId, rowMap )
-                                }
-                            >
-                                <Icon active name="trash" />
-                            </Button>
-                        ) }
-                        leftOpenValue={ 75 }
-                        rightOpenValue={ -75 }
+} );
+const RenderNumeric = ( { input, label }: InputType ) => (
+    <View style={ styles.inputContainer }>
+        <Input
+            style={ styles.input }
+            width={ 65 }
+            keyboardType="numeric"
+            { ...input }
+        />
+        <Text note style={ { fontSize: 10 } }>
+            {label}
+        </Text>
+    </View>
+);
+
+class Detail extends Component<PropType, StateType> {
+    static navigationOptions = {
+        title: "Mahasiswa",
+        isBack: true
+    };
+    static defaultProps = {
+        results: data
+    };
+
+    _endAssessment = () => console.log( "END" );
+    _renderRow = ( item, index ) => (
+        <ListItem>
+            <Body>
+                <View style={ styles.infoContainer }>
+                    <View style={ styles.info }>
+                        <Bold>{item.nama}</Bold>
+                        <Text>{item.nim}</Text>
+                    </View>
+                    <Text style={ styles.infoSummary }>{item.nilai}</Text>
+                </View>
+                <View style={ { flex: 1, flexDirection: "row" } }>
+                    <Field
+                        name={ `Mahasiswa[${ index }].tugas` }
+                        label="Tugas"
+                        component={ RenderNumeric }
                     />
-                </Content>
+                    <Field
+                        name={ `Mahasiswa[${ index }].partisipasi` }
+                        label="Aktif"
+                        component={ RenderNumeric }
+                    />
+                    <Field
+                        name={ `Mahasiswa[${ index }].uts` }
+                        label="UTS"
+                        component={ RenderNumeric }
+                    />
+                    <Field
+                        name={ `Mahasiswa[${ index }].uas` }
+                        label="UAS"
+                        component={ RenderNumeric }
+                    />
+                </View>
+            </Body>
+        </ListItem>
+    );
+    render() {
+        const { results } = this.props;
+
+        return (
+            <Container style={ globalStyle.container }>
+                <List
+                    dataArray={ results }
+                    renderRow={ ( item, key, index ) =>
+                        this._renderRow( item, index )
+                    }
+                />
+                <View style={ { padding: 10 } }>
+                    <Button block rounded onPress={ () => this._endAssessment() }>
+                        <FontAwesome name="save" style={ globalStyle.icon } />
+                        <Text>SELESAI</Text>
+                    </Button>
+                </View>
             </Container>
         );
     }
 }
+
+const detailForm = reduxForm( {
+    form: "detailForm",
+    enableReinitialize: true
+} )( Detail );
+
+const mapStateToProps = () => {
+    const daftarMahasiswa = [];
+    data.map( item =>
+        daftarMahasiswa.push( {
+            nim: item.nim,
+            tugas: item.tugas,
+            partisipasi: item.partisipasi,
+            uts: item.uts,
+            uas: item.uas
+        } )
+    );
+    return {
+        initialValues: {
+            Mahasiswa: daftarMahasiswa
+        }
+    };
+};
+export default connect( mapStateToProps )( detailForm );

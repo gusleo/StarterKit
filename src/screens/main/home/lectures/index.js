@@ -54,7 +54,8 @@ class Lectures extends Component<PropType, StateType> {
                     />
                     <Field
                         name="Materi"
-                        label="Materi"
+                        label=""
+                        placeholder="Deskripsi materi perkuliahan"
                         rowSpan={ 5 }
                         component={ RenderTextarea }
                     />

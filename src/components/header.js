@@ -50,7 +50,7 @@ class HeaderCustom extends Component<PropsType, StateType> {
      * @returns
      * @memberof HeaderCustom
      */
-    renderLeftMenu( enableBackButton: boolean ) {
+    renderLeftMenu( enableBackButton: boolean | any ) {
         if ( !enableBackButton ) {
             return (
                 <Button
