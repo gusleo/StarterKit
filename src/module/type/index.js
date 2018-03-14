@@ -1,4 +1,5 @@
 // @flow
+
 export type StudentType = {
     nama: string,
     nim: string,
@@ -9,9 +10,9 @@ export type StudentType = {
 export type ScheduleType = {
     type: string,
     title: string,
-    schedule: string,
     sks: string,
-    value: string | number
+    value: string | number,
+    petemuan: string
 };
 
 export type StudentAssessmentType = {
@@ -20,5 +21,6 @@ export type StudentAssessmentType = {
     uas: string,
     uts: string,
     tugas: string,
-    partisipasi: string
+    partisipasi: string,
+    akumulasi: string
 };

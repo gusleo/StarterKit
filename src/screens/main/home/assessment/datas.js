@@ -6,7 +6,8 @@ export default [
         uas: "65",
         tugas: "65",
         partisipasi: "65",
-        nilai: "A"
+        nilai: "A",
+        akumulasi: "3.75"
     },
     {
         nama: "IGNA Surya Mahendra",
@@ -15,7 +16,8 @@ export default [
         uas: "65",
         tugas: "65",
         partisipasi: "65",
-        nilai: "A"
+        nilai: "A",
+        akumulasi: "3.75"
     },
     {
         nama: "Ade Wahyudi",
@@ -24,6 +26,7 @@ export default [
         uas: "65",
         tugas: "65",
         partisipasi: "65",
-        nilai: "A"
+        nilai: "A",
+        akumulasi: "3.75"
     }
 ];

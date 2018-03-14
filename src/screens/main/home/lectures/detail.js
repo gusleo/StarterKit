@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, type Element } from "react";
 import {
     Container,
     List,
@@ -11,26 +11,30 @@ import {
     Button
 } from "native-base";
 import { ListView, ListViewDataSource, View } from "react-native";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { Bold } from "@components";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import type { StudentType } from "@type";
 import type { InputProps } from "redux-form/es/Field";
+import SwipeButton from "./swipeButton";
 import data from "./datas";
 import globalStyle from "../../globalStyle";
 
 type PropType = {
     results?: Array<StudentType>
 };
-type StateType = {};
-
-type InputType = {
-    input: InputProps
+type StateType = {
+    enableToEdit: boolean
 };
 
-const RenderNumeric = ( { input }: InputType ) => (
-    <Input width={ 50 } keyboardType="numeric" { ...input } />
+type InputType = {
+    input: InputProps,
+    disabled: boolean
+};
+
+const RenderNumeric = ( { input, disabled }: InputType ): Element<Input> => (
+    <Input width={ 50 } disabled={ disabled } keyboardType="numeric" { ...input } />
 );
 
 class Detail extends Component<PropType, StateType> {
@@ -41,12 +45,16 @@ class Detail extends Component<PropType, StateType> {
     static defaultProps = {
         results: data
     };
+
     constructor( props ) {
         super( props );
         this.ds = new ListView.DataSource( {
             rowHasChanged: ( r1, r2 ) => r1 !== r2
         } );
     }
+    state = {
+        enableToEdit: true
+    };
 
     ds: ListViewDataSource;
     _defineColorAndTextStatus = ( status: number ) => {
@@ -71,6 +79,7 @@ class Detail extends Component<PropType, StateType> {
     _renderRow = ( item, index ) => {
         const name = `Mahasiswa[${ index }].value`;
         const { Status, Color } = this._defineColorAndTextStatus( item.status );
+        const { enableToEdit } = this.state;
         return (
             <ListItem>
                 <Body>
@@ -81,13 +90,18 @@ class Detail extends Component<PropType, StateType> {
                     <Text>{item.nim}</Text>
                 </Body>
                 <Right>
-                    <Field name={ name } component={ RenderNumeric } />
+                    <Field
+                        name={ name }
+                        disabled={ !enableToEdit }
+                        component={ RenderNumeric }
+                    />
                 </Right>
             </ListItem>
         );
     };
     render() {
         const { results } = this.props;
+        const { enableToEdit } = this.state;
 
         return (
             <Container style={ globalStyle.container }>
@@ -97,22 +111,21 @@ class Detail extends Component<PropType, StateType> {
                     renderRow={ ( item, key, index ) =>
                         this._renderRow( item, index )
                     }
-                    renderRightHiddenRow={ () => (
-                        <Button full danger>
-                            <Ionicons
-                                style={ [ globalStyle.icon, { fontSize: 30 } ] }
-                                name="ios-people"
-                            />
-                        </Button>
-                    ) }
+                    renderRightHiddenRow={ () => <SwipeButton /> }
                     rightOpenValue={ -75 }
                 />
-                <View style={ { padding: 10 } }>
-                    <Button block rounded onPress={ () => this._endLectures() }>
-                        <FontAwesome name="save" style={ globalStyle.icon } />
-                        <Text>SELESAI</Text>
-                    </Button>
-                </View>
+                {enableToEdit && (
+                    <View style={ { padding: 10 } }>
+                        <Button
+                            block
+                            rounded
+                            onPress={ () => this._endLectures() }
+                        >
+                            <FontAwesome name="save" style={ globalStyle.icon } />
+                            <Text>SELESAI</Text>
+                        </Button>
+                    </View>
+                )}
             </Container>
         );
     }

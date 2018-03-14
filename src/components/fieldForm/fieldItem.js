@@ -8,19 +8,31 @@ import styles from "./styles";
 
 type PropType = {
     label: string,
-    meta: MetaProps,
+    meta?: MetaProps,
     labelStyle: StyleSheet.Styles,
     stacked: boolean,
     children: Node
 };
 
-export default ( { label, meta, labelStyle, children, stacked }: PropType ) => (
-    <Item stackedLabel={ stacked } error={ meta.error && meta.touched }>
+const FieldItem = ( {
+    label,
+    meta,
+    labelStyle,
+    children,
+    stacked
+}: PropType ) => (
+    <Item stackedLabel={ stacked } error={ meta && meta.error && meta.touched }>
         <Label style={ !stacked ? [ styles.label, labelStyle ] : [ labelStyle ] }>
             {label}
         </Label>
         {children}
-        {meta.error &&
+        {meta &&
+            meta.error &&
             meta.touched && <Italic style={ styles.error }>{meta.error}</Italic>}
     </Item>
 );
+FieldItem.defaultProps = {
+    meta: null
+};
+
+export default FieldItem;

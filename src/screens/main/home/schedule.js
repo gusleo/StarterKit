@@ -59,7 +59,7 @@ export default class Schedule extends Component<PropType, StateType> {
                 <ListItem>
                     <Body>
                         <Bold>{item.title}</Bold>
-                        <Text>{item.schedule}</Text>
+                        <Text>{item.pertemuan}</Text>
                     </Body>
                     <Right>
                         <Text>{item.value}</Text>

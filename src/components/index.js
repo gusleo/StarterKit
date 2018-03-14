@@ -11,7 +11,8 @@ import {
     RenderInput,
     RenderSelect,
     RenderDatePicker,
-    RenderTextarea
+    RenderTextarea,
+    RenderRadioButtonGroup
 } from "./fieldForm";
 
 module.exports = {
@@ -27,5 +28,6 @@ module.exports = {
     RenderSelect,
     RenderDatePicker,
     RenderTextarea,
+    RenderRadioButtonGroup,
     HtmlWrapper
 };

@@ -1,12 +1,11 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component, type Element } from "react";
 import {
     Container,
     List,
     ListItem,
     Text,
     Body,
-    Right,
     Input,
     Button
 } from "native-base";
@@ -56,11 +55,13 @@ const styles = StyleSheet.create( {
         fontWeight: "bold"
     }
 } );
-const RenderNumeric = ( { input, label }: InputType ) => (
+
+const RenderNumeric = ( { input, label }: InputType ): Element<View> => (
     <View style={ styles.inputContainer }>
         <Input
             style={ styles.input }
             width={ 65 }
+            maxLength={ 5 }
             keyboardType="numeric"
             { ...input }
         />
@@ -88,7 +89,10 @@ class Detail extends Component<PropType, StateType> {
                         <Bold>{item.nama}</Bold>
                         <Text>{item.nim}</Text>
                     </View>
-                    <Text style={ styles.infoSummary }>{item.nilai}</Text>
+                    <View style={ { alignItems: "flex-end" } }>
+                        <Text style={ styles.infoSummary }>{item.nilai}</Text>
+                        <Text style={ styles.infoSummary }>{item.akumulasi}</Text>
+                    </View>
                 </View>
                 <View style={ { flex: 1, flexDirection: "row" } }>
                     <Field
