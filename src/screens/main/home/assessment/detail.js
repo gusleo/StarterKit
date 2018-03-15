@@ -10,6 +10,7 @@ import {
     Button
 } from "native-base";
 import { View, StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { FontAwesome } from "@expo/vector-icons";
 import { Bold } from "@components";
 import { connect } from "react-redux";
@@ -124,12 +125,14 @@ class Detail extends Component<PropType, StateType> {
 
         return (
             <Container style={ globalStyle.container }>
-                <List
-                    dataArray={ results }
-                    renderRow={ ( item, key, index ) =>
-                        this._renderRow( item, index )
-                    }
-                />
+                <KeyboardAwareScrollView>
+                    <List
+                        dataArray={ results }
+                        renderRow={ ( item, key, index ) =>
+                            this._renderRow( item, index )
+                        }
+                    />
+                </KeyboardAwareScrollView>
                 <View style={ { padding: 10 } }>
                     <Button block rounded onPress={ () => this._endAssessment() }>
                         <FontAwesome name="save" style={ globalStyle.icon } />
